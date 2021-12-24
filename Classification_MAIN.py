@@ -27,7 +27,7 @@ base_dir = '/home/users/graceebc/Fire_data'
 fp_train_ext = f"{base_dir}/Project_area.shp"
 complex_training_fpath = f"{base_dir}/Training_data/Complex_points_2800.shp"
 simple_training_fpath = f"{base_dir}/Training_data/Simple_points_5000.shp"
-fp_target_ext = f"{base_dir}/Whole_map.shp"
+fp_target_ext = f"{base_dir}/whole_map.shp"
 fp_export_dir = f"{base_dir}/Classified/"
 
 # Hard coded variables
