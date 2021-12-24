@@ -8,7 +8,7 @@ from geemap import geemap
 #sys.path.append("C:/Users/tpfdo/OneDrive/Documents/GitHub/Polesia-Landcover/Routines/")
 #sys.path.append("/home/markdj/repos/Polesia-Landcover/Routines/")
 
-sys.path.append('/Users/gracecolverd/Documents/Fire_Proj/Polesia-Landcover/Routines')
+sys.path.append('/home/users/graceebc/Fire_data/Routines')
 
 from Classification_tools import RF_model_and_train, accuracy_assessment_basic, map_target_area
 
@@ -22,12 +22,12 @@ accuracy_eval_toggle = False
 
 # File paths and directories for classification pipeline
 #base_dir = '/home/markdj/Dropbox/artio/polesia'
-base_dir = '/Users/gracecolverd/Documents/Fire_Proj/righthalf'
+base_dir = '/home/users/graceebc/Fire_data'
 
 fp_train_ext = f"{base_dir}/Project_area.shp"
 complex_training_fpath = f"{base_dir}/Training_data/Complex_points_2800.shp"
 simple_training_fpath = f"{base_dir}/Training_data/Simple_points_5000.shp"
-fp_target_ext = f"{base_dir}/righthalf_fullmap.shp"
+fp_target_ext = f"{base_dir}/Whole_map.shp"
 fp_export_dir = f"{base_dir}/Classified/"
 
 # Hard coded variables
