@@ -28,7 +28,7 @@ fp_train_ext = f"{base_dir}/Project_area.shp"
 complex_training_fpath = f"{base_dir}/Training_data/Complex_points_2800.shp"
 simple_training_fpath = f"{base_dir}/Training_data/Simple_points_5000.shp"
 fp_target_ext = f"{base_dir}/test90.shp"
-fp_export_dir = f"{base_dir}/Classified/"
+fp_export_dir = f"{base_dir}/Test/"
 
 # Hard coded variables
 label = "VALUE"
