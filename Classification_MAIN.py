@@ -28,7 +28,7 @@ fp_train_ext = f"{base_dir}/Project_area.shp"
 complex_training_fpath = f"{base_dir}/Training_data/Complex_points_2800.shp"
 simple_training_fpath = f"{base_dir}/Training_data/Simple_points_5000.shp"
 fp_target_ext = f"{base_dir}/whole_map.shp"
-fp_export_dir = f"{base_dir}/Classified/"
+fp_export_dir = f"{base_dir}/Classified_2016/"
 
 # Hard coded variables
 label = "VALUE"
@@ -36,7 +36,7 @@ training_year = "2018"
 scale = 20
 trees_complex = 150
 trees_simple = 75
-years_to_map = [2018]
+years_to_map = [2016]
 
 """
 Classification pipeline
