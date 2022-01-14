@@ -14,6 +14,7 @@ import rioxarray as rxr
 from rioxarray import merge
 import xarray as xr 
 import glob
+import tarfile
 
 import os
 import datetime
