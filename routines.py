@@ -9,8 +9,8 @@ import rioxarray as rxr
 import matplotlib as mpl
 import matplotlib.pylab as plt
 import numpy as np
-import geopandas as gpd
-import xarray as xr    
+import xarray as xr 
+import fiona
 
 
 # In[ ]:
@@ -24,6 +24,8 @@ import xarray as xr
 
 # Define a function to return the vertices of a polygon
 
+# Define a function to return the vertices of a polygon
+
 def extract_vertices(shape_file_path):
     """Returns a numpy array of the lat/lons corresponding to the vertices of a polygon defined by a shape file.
     
@@ -31,18 +33,19 @@ def extract_vertices(shape_file_path):
     shape_file_path -- realtive path where the shp and shx files are located (both required)
     
     Prerequisites: 
-    - geopandas
+    - fiona
     - numpy
     """
     
-    polygons_df = gpd.read_file(shape_file_path)
-    vertices = list([list(coords) for coords in polygons_df.iloc[0]['geometry'].exterior.coords])
+    # Extract the vertices using fiona
+    with fiona.open(shape_file_path) as shape_data:
+        vertices = shape_data[0]['geometry']['coordinates'][0]
+        
+    # Return them as a numpy array
     return np.array(vertices)
 
 
-# In[ ]:
-
-
+# Define a function to do the cropping of the data
 # Define a function to do the cropping of the data
 
 def crop_data_spatially(input_data, shape_file_path, zero_remap = 0):
@@ -78,7 +81,6 @@ def crop_data_spatially(input_data, shape_file_path, zero_remap = 0):
     # Crop the data using the latitude/longitudes and remap the new zero values 
     data_cropped = (input_data-zero_remap).rio.clip(shape_geometry, "epsg:4326") + zero_remap
     return data_cropped
-
 
 # In[ ]:
 
