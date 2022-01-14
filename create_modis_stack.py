@@ -90,7 +90,7 @@ for i in range(len(chunked_files)):
     elements =[]
     for file in chunked_files[i]:
         #create date array to add to dataset 
-        date_str = file[12:20]
+        date_str = file[28:36]
         print(file)
         year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
         date = datetime.datetime(year, month, day)
