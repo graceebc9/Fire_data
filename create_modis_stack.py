@@ -50,14 +50,15 @@ files = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0
 
 for file_name in files:
     #check if file there
-    # open file
-  
-    file = tarfile.open(file_name)
+    if file_name not in os.listdir(output_path):
+        # open file
 
-    # extracting file
-    file.extractall(output_path)
+        file = tarfile.open(file_name)
 
-    file.close()
+        # extracting file
+        file.extractall(output_path)
+
+        file.close()
 
 
 # In[4]:
@@ -89,6 +90,7 @@ for i in range(len(chunked_files)):
     for file in chunked_files[i]:
         #create date array to add to dataset 
         date_str = file[12:20]
+        print(date_str)
         year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
         date = datetime.datetime(year, month, day)
         time_da = xr.Dataset({"date": date})
