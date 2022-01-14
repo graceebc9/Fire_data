@@ -37,7 +37,7 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 
 # In[ ]:
 
-
+print('Pulling and unzipping the MODIS files, start()... ')
 #Access all files and unzip 
 year_list = range(2001,2003)
 months = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09' ,'10', '11', '12']
@@ -61,11 +61,11 @@ for file_name in files:
 
         file.close()
 
-
+print('Unzip all MODIS files, end()')
 # In[4]:
 
 
-
+print('Create data stack, start().. ')
 
 JD_files = sorted(glob.glob('/home/users/graceebc/MODIS/*JD.tif'))
 CL_files = sorted(glob.glob('/home/users/graceebc/MODIS/*CL.tif'))
@@ -91,7 +91,7 @@ for i in range(len(chunked_files)):
     for file in chunked_files[i]:
         #create date array to add to dataset 
         date_str = file[12:20]
-        print(date_str)
+        print(file)
         year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
         date = datetime.datetime(year, month, day)
         time_da = xr.Dataset({"date": date})
@@ -106,4 +106,4 @@ for i in range(len(chunked_files)):
     print('Done!')
     final.append(stack)
     
-
+print('Complete data stack, bye!')
