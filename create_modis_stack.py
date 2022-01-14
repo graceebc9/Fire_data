@@ -12,7 +12,6 @@
 
 import rioxarray as rxr
 from rioxarray import merge
-from rasterio.plot import show 
 import xarray as xr 
 import glob
 
@@ -25,7 +24,7 @@ import fiona
 
 
 import routines
-from routines import extract_vertices, plot, crop_data_spatially 
+from routines import extract_vertices, crop_data_spatially 
 
 
 # In[ ]:
@@ -104,74 +103,4 @@ for i in range(len(chunked_files)):
     print('Done!')
     final.append(stack)
     
-
-
-
-# In[7]:
-
-
-stack
-
-
-# 
-
-# In[ ]:
-
-
-
-stack = xr.concat(final, dim='time')
-
-
-# In[8]:
-
-
-
-elements =[]
-
-for file in chunked_files[0]:
-    date_str = file[12:20]
-    year = int(date_str[:4])
-    month = int(date_str[4:6])
-    day = int(date_str[6:8])
-    date = datetime.datetime(year, month, day)
-    time_da = xr.Dataset({"date": date})
-    
-    base = xr.open_dataset(file)
-    ds = base.to_array()
-    dst = ds.expand_dims(time=time_da.to_array()) #errors here
-    elements.append(dst)
-
- 
-
-
-# In[15]:
-
-
-stack = xr.concat(elements, dim='time')
-stack
-
-
-# In[14]:
-
-
-stack1 = stack.to_dataset(name = 'test_123')
-stack1
-
-
-# In[ ]:
-
-
-
-
-
-# In[17]:
-
-
-stack.to_netcdf('test.nc')
-
-
-# In[ ]:
-
-
-
 
