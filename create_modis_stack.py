@@ -50,7 +50,7 @@ months = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09' ,'10', '11', '12'
 files_part1 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(year, month) for year in year_list for month in months]
 file_part2 = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2007/new-corrected/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'
 
-files = files_part1 + file+part2
+files = files_part1 + file_part2
 
 output_path = '/home/users/graceebc/MODIS/'
 
