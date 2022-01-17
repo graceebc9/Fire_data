@@ -35,10 +35,19 @@ from routines import extract_vertices, crop_data_spatially
 
 # In[ ]:
 
+#Set up paths and directories 
+#file path for jasmin
+path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'  
 
-#file path for jasmin 
-path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
+#output paths
+output_path_zip = '/home/users/graceebc/MODIS/'
+output_path_final  = '/home/users/graceebc/Fire_data/MODIS/
 
+if os.path.isdir(output_path_zip) is false:
+    os.makedirs(output_path)   
+
+if os.path.isdir(output_path_final) is false:
+    os.makedirs(output_path_final)
 
 print('Pulling and unzipping the MODIS files, start()... ')
 
@@ -55,17 +64,17 @@ file_part3 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2
 file_part4 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/new-corrected/2019{0}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months2]
 files = file_part1 + file_part2 + file_part3 + file_part4
 
-output_path = '/home/users/graceebc/MODIS/'
+
 
 for file_name in files:
     #check if file already unzipped
-    if file_name not in os.listdir(output_path):
+    if file_name not in os.listdir(output_path_zip):
         # open file
 
         file = tarfile.open(file_name)
 
         # extracting file
-        file.extractall(output_path)
+        file.extractall(output_path_zip)
 
         file.close()
 
@@ -94,7 +103,8 @@ for year in year_list :
     #chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
 
     final = [] 
-    output_path_final = '/home/users/graceebc/Fire_data/MODIS/{0}_chunk.tif'.format(year)
+    output_path =  output_path_final + '{0}_chunk.tif'.format(year)
+    
     
 
     elements =[]
