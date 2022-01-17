@@ -9,6 +9,8 @@ Variable to be updates:
 output_path : where your unzipped MODIS files go (reccomend not in your GIT folder)
 whole_map: the location of the shp shapefiles that you want your MODIS data clipped to
 output_path_final: location of your time stacked data set (put in your git file if you want to play around in local Jupyter notebook)
+
+run using viz modis conda env in JASMIN
 """
 
 
