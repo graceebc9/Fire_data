@@ -44,7 +44,7 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 
 print('Pulling and unzipping the MODIS files, start()... ')
 #Access all files and unzip 
-year_list = range(2001,2003)
+year_list = range(2001,2021)
 months = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09' ,'10', '11', '12']
 output_path = '/home/users/graceebc/MODIS/'
 
