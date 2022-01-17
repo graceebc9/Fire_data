@@ -90,7 +90,7 @@ for year in year_list :
     
 
     elements =[]
-    for file in JD_files[i]:
+    for file in JD_files:
         #create date array to add to dataset 
         date_str = file[27:35]
         print(file)
