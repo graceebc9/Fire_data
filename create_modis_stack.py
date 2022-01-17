@@ -41,12 +41,12 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 
 #output paths
 output_path_zip = '/home/users/graceebc/MODIS/'
-output_path_final  = '/home/users/graceebc/Fire_data/MODIS/'
+output_path_final  = '/home/users/graceebc/Fire_data/MODIS/
 
-if os.path.isdir(output_path_zip) is False:
+if os.path.isdir(output_path_zip) is false:
     os.makedirs(output_path)   
 
-if os.path.isdir(output_path_final) is False:
+if os.path.isdir(output_path_final) is false:
     os.makedirs(output_path_final)
 
 print('Pulling and unzipping the MODIS files, start()... ')
@@ -94,40 +94,40 @@ whole_map = '/home/users/graceebc/Fire_data/whole_map.shp'
 
 
 
-#n=12
+n=12
 
 for year in year_list :
     print('Starting ' + str(year))
     file = '/home/users/graceebc/MODIS/{0}*JD.tif'.format(year)
     JD_files = sorted(glob.glob(file))
-    #chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
+    chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
 
-    output_path =  output_path_final + '{0}_chunk.tif'.format(year)
-    
-    if os.path.isfile(output_path) is False:
 
-        elements =[]
-        for file in JD_files:
-            #create date array to add to dataset 
-            date_str = file[27:35]
-            print(file)
-            year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
-            date = datetime.datetime(year, month, day)
-            time_da = xr.Dataset({"date": date})
+    for i in range(len(chunked_files)):
+        output_path =  output_path_final + '{0}_{1}_chunk.tif'.format(year, i)
+        if os.path.isfile(output_path) is false:
+            elements =[]
+            for file in JD_files:
+                #create date array to add to dataset 
+                date_str = file[27:35]
+                print(file)
+                year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
+                date = datetime.datetime(year, month, day)
+                time_da = xr.Dataset({"date": date})
 
-            #open dataset and add time , then store in elements 
-            base = rxr.open_rasterio(file)
-            base_days_clipped = crop_data_spatially(base, whole_map, -2) # set to non burnable 
-            ds = base_days_clipped
-            dst = ds.expand_dims(time=time_da.to_array()) 
-            elements.append(dst)
-            print('file done')
-        stack = xr.concat(elements, dim='time')
-        print('stack appended!')
-        print('start downloading stack')
-        da = stack.to_dataset(name='{0}_chunk'.format(year))
-        da.to_netcdf(output_path)
-        print('stack downloaded')
+                #open dataset and add time , then store in elements 
+                base = rxr.open_rasterio(file)
+                base_days_clipped = crop_data_spatially(base, whole_map, -2) # set to non burnable 
+                ds = base_days_clipped
+                dst = ds.expand_dims(time=time_da.to_array()) 
+                elements.append(dst)
+                print('file done')
+            stack = xr.concat(elements, dim='time')
+            print('stack appended!')
+            print('start downloading stack')
+            da = stack.to_dataset(name='{0}_chunk'.format(year))
+            da.to_netcdf(output_path)
+            print('stack downloaded')
 
 
 # In[ ]:
