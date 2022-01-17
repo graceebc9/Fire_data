@@ -16,5 +16,5 @@ outputpath = '/home/users/graceebc/Fire_data/MODIS/zip/'
 for file in chunks:
     out = outputpath + file    
     im = imread(file)
-    imsave("out', im, compress=6) 
+    imsave('out', im, compress=6) 
 
