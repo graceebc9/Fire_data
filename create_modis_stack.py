@@ -104,7 +104,7 @@ for year in year_list :
 
     output_path =  output_path_final + '{0}_chunk.tif'.format(year)
     
-    if os.path.isfile(output_path) is false:
+    if os.path.isfile(output_path) == false:
 
         elements =[]
         for file in JD_files:
