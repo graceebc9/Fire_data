@@ -41,7 +41,7 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 
 #output paths
 output_path_zip = '/home/users/graceebc/MODIS/'
-output_path_final  = '/home/users/graceebc/Fire_data/MODIS/
+output_path_final  = '/home/users/graceebc/Fire_data/MODIS/'
 
 if os.path.isdir(output_path_zip) is false:
     os.makedirs(output_path)   
