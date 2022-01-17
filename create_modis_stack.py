@@ -70,7 +70,7 @@ print('Create data stack, start().. ')
 JD_files = sorted(glob.glob('/home/users/graceebc/MODIS/*JD.tif'))
 CL_files = sorted(glob.glob('/home/users/graceebc/MODIS/*CL.tif'))
 
-whole_map = '/home/users/gracebc/Fire_data/whole_map.shp'
+whole_map = '/home/users/graceebc/Fire_data/whole_map.shp'
 
 
 # In[4]:
