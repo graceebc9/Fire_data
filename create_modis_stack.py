@@ -88,7 +88,7 @@ for year in year_list :
     final = [] 
     output_path = '/home/users/graceebc/MODIS/{0}_chunk.tif'.format(year)
     
-    for i in range(len(chunked_files)):
+    for i in range(len(JD_files)):
         elements =[]
         for file in chunked_files[i]:
             #create date array to add to dataset 
