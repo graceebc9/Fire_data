@@ -40,11 +40,9 @@ from routines import extract_vertices, crop_data_spatially
 path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 
 
-# In[ ]:
-
 print('Pulling and unzipping the MODIS files, start()... ')
 #Access all files and unzip 
-year_list = range(2001,2021)
+year_list = [ x for x in range(2001,2021) if x!= 2007 ]
 months = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09' ,'10', '11', '12']
 output_path = '/home/users/graceebc/MODIS/'
 
@@ -55,7 +53,7 @@ output_path = '/home/users/graceebc/MODIS/'
 files = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(year, month) for year in year_list for month in months]
 
 for file_name in files:
-    #check if file there
+    #check if file already unzipped
     if file_name not in os.listdir(output_path):
         # open file
 
