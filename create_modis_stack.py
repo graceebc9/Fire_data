@@ -43,10 +43,10 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 output_path_zip = '/home/users/graceebc/MODIS/'
 output_path_final  = '/home/users/graceebc/Fire_data/MODIS/'
 
-if os.path.isdir(output_path_zip) is false:
+if os.path.isdir(output_path_zip) is False:
     os.makedirs(output_path)   
 
-if os.path.isdir(output_path_final) is false:
+if os.path.isdir(output_path_final) is False:
     os.makedirs(output_path_final)
 
 print('Pulling and unzipping the MODIS files, start()... ')
@@ -104,7 +104,7 @@ for year in year_list :
 
     output_path =  output_path_final + '{0}_chunk.tif'.format(year)
     
-    if os.path.isfile(output_path) == false:
+    if os.path.isfile(output_path) is False:
 
         elements =[]
         for file in JD_files:
