@@ -52,7 +52,7 @@ months2 = [ '10', '11', '12']
 file_part1 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(year, month) for year in year_list for month in months]
 file_part2 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2007/new-corrected/2007{0}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months ]
 file_part3 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/2019{0}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months1]
-file_part4 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/new-corrected/2019{0}-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months2]
+file_part4 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/new-corrected/2019{0}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months2]
 files = file_part1 + file_part2 + file_part3 + file_part4
 
 output_path = '/home/users/graceebc/MODIS/'
