@@ -15,7 +15,10 @@ chunks= glob.glob('/home/users/graceebc/Fire_data/MODIS/*.tif')
 outputpath = '/home/users/graceebc/Fire_data/MODIS/zip/'
 
 for file in chunks:
+    print(file)
+    
     out = outputpath + file    
+    print(out)
     im = imread(file)
     imsave('out', im, compress=6) 
 
