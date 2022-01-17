@@ -77,33 +77,41 @@ whole_map = '/home/users/graceebc/Fire_data/whole_map.shp'
 
 
 
-n=4
-chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
+#n=12
+
+for year in year_list :
+    file = '/home/users/graceebc/MODIS/{0}*JD.tif'.format(year)
+    JD_files = sorted(glob.glob(file))
+    #chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
+
+    final = [] 
+    output_path = '/home/users/graceebc/MODIS/{0}_chunk.tif'.format(year)
+    
+    for i in range(len(chunked_files)):
+        elements =[]
+        for file in chunked_files[i]:
+            #create date array to add to dataset 
+            date_str = file[27:35]
+            print(file)
+            year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
+            date = datetime.datetime(year, month, day)
+            time_da = xr.Dataset({"date": date})
+
+            #open dataset and add time , then store in elements 
+            base = rxr.open_rasterio(file)
+            base_days_clipped = crop_data_spatially(base, whole_map, -2) # set to non burnable 
+            ds = base_days_clipped
+            dst = ds.expand_dims(time=time_da.to_array()) 
+            elements.append(dst)
+        stack = xr.concat(elements, dim='time')
+        print('File Done!')
+        final.append(stack)
+        da = final.to_dataset(name='{0}chunk'.format(year))
+        da.to_netcdf(output_path)
 
 
 # In[ ]:
 
 
-final = [] 
-
-for i in range(len(chunked_files)):
-    elements =[]
-    for file in chunked_files[i]:
-        #create date array to add to dataset 
-        date_str = file[27:35]
-        print(file)
-        year, month, day  = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8])
-        date = datetime.datetime(year, month, day)
-        time_da = xr.Dataset({"date": date})
-
-        #open dataset and add time , then store in elements 
-        base = rxr.open_rasterio(file)
-        base_days_clipped = crop_data_spatially(base, whole_map, -2) # set to non burnable 
-        ds = base_days_clipped
-        dst = ds.expand_dims(time=time_da.to_array()) 
-        elements.append(dst)
-    stack = xr.concat(elements, dim='time')
-    print('Done!')
-    final.append(stack)
     
 print('Complete data stack, bye!')
