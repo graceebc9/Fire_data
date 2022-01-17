@@ -80,6 +80,7 @@ whole_map = '/home/users/graceebc/Fire_data/whole_map.shp'
 #n=12
 
 for year in year_list :
+    print('starting ' + str(year ))
     file = '/home/users/graceebc/MODIS/{0}*JD.tif'.format(year)
     JD_files = sorted(glob.glob(file))
     #chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
@@ -103,11 +104,13 @@ for year in year_list :
             ds = base_days_clipped
             dst = ds.expand_dims(time=time_da.to_array()) 
             elements.append(dst)
+	    print('file done')	
         stack = xr.concat(elements, dim='time')
-        print('File Done!')
-        final.append(stack)
-        da = final.to_dataset(name='{0}chunk'.format(year))
+        print('stack appended!')
+	print('start downloading stack')
+        da = stack.to_dataset(name='{0}chunk'.format(year))
         da.to_netcdf(output_path)
+	print('stack downloaded')
 
 
 # In[ ]:
