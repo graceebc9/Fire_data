@@ -108,7 +108,7 @@ for year in year_list :
         stack = xr.concat(elements, dim='time')
         print('stack appended!')
 	print('start downloading stack')
-        da = stack.to_dataset(name='{0}chunk'.format(year))
+        da = stack.to_dataset(name='{0}_chunk'.format(year))
         da.to_netcdf(output_path)
 	print('stack downloaded')
 
