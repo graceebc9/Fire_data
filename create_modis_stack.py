@@ -96,7 +96,7 @@ whole_map = '/home/users/graceebc/Fire_data/whole_map.shp'
 
 
 
-n=12
+n=6
 
 for year in year_list :
     print('Starting ' + str(year))
