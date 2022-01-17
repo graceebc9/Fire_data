@@ -4,7 +4,12 @@
 # In[ ]:
 
 
-#Combine the MODIS data into one time block 
+"""Combine the MODIS data into one time block: pulls data from the CEDA archive on JASMIN 
+Variable to be updates:
+output_path : where your unzipped MODIS files go (reccomend not in your GIT folder)
+whole_map: the location of the shp shapefiles that you want your MODIS data clipped to
+output_path_final: location of your time stacked data set (put in your git file if you want to play around in local Jupyter notebook)
+"""
 
 
 # In[2]:
@@ -86,7 +91,7 @@ for year in year_list :
     #chunked_files = [JD_files[i:i + n] for i in range(0, len(JD_files), n)]
 
     final = [] 
-    output_path = '/home/users/graceebc/MODIS/{0}_chunk.tif'.format(year)
+    output_path_final = '/home/users/graceebc/Fire_data/MODIS/{0}_chunk.tif'.format(year)
     
 
     elements =[]
@@ -109,7 +114,7 @@ for year in year_list :
     print('stack appended!')
     print('start downloading stack')
     da = stack.to_dataset(name='{0}_chunk'.format(year))
-    da.to_netcdf(output_path)
+    da.to_netcdf(output_path_final)
     print('stack downloaded')
 
 
@@ -117,4 +122,4 @@ for year in year_list :
 
 
     
-print('Complete data stack, bye!')
+print('Completed data stack, bye!')
