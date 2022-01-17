@@ -43,14 +43,17 @@ path = '/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed'
 print('Pulling and unzipping the MODIS files, start()... ')
 
 #Access all files and unzip 
-year_list = [ x for x in range(2001,2021) if x!= 2007 ]
+year_list = [ x for x in range(2001,2021) if (x!= 2007 and x!= 2019) ]
 months = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09' ,'10', '11', '12']
+months1 = ['01', '02', '03', '04', '05', '06', '07', '08' ,'09']
+months2 = [ '10', '11', '12']
 
-#create list of files - 2007 has different folder structure 
-files_part1 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(year, month) for year in year_list for month in months]
+#create list of files - 2007 has different folder structure + 2019
+file_part1 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/{0}/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(year, month) for year in year_list for month in months]
 file_part2 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2007/new-corrected/{0}{1}01-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz']
-
-files = files_part1 + file_part2
+file_part3 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/2019{0}-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months1]
+file_part4 = ['/neodc/esacci/fire/data/burned_area/MODIS/pixel/v5.1/compressed/2019/new-corrected/2019{0}-ESACCI-L3S_FIRE-BA-MODIS-AREA_3-fv5.1.tar.gz'.format(month) for month in months2]
+files = file_part1 + file_part2 + file_part3 + file_part4
 
 output_path = '/home/users/graceebc/MODIS/'
 
