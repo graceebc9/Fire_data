@@ -5,6 +5,7 @@
 
 
 from tifffile import imread, imsave
+import glob
 
 
 # In[ ]:
