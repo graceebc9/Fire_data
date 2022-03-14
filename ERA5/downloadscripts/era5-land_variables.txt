@@ -1,0 +1,6 @@
+var_name	CDS_name	levels	type
+t2m	2m_temperature	single	instantaneous
+snowc	snow_cover	single	instantaneous
+sd	snow_depth_water_equivalent	single	instantaneous
+swvl1	volumetric_soil_water_layer_1	single	instantaneous
+
